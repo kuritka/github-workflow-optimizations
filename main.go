@@ -4,5 +4,5 @@ import "fmt"
 
 func main() {
 	fmt.Println("Hello from 💎 🏭.")
-	fmt.Println("I have 💎 🚀 in my backpack.")
+	fmt.Println("I have 💎 🚀 :cat: in my backpack.")
 }
