@@ -15,8 +15,23 @@ on:
       - '**.drawio'
       - '.spelling'
 jobs:
+  inspect-skipping:
+    runs-on: ubuntu-latest
+    name: Figuring out whether I can skip the job
+    outputs:
+          should_skip: ${{ steps.skip_check.outputs.should_skip }}
+    steps:
+    - id: skip_check
+      uses: fkirc/skip-duplicate-actions@v3.4.1
+      with:
+        skip-duplicate-actions: true
+        do_not_skip: '["pull_request", "workflow_dispatch", "schedule"]'
+
   go-inspect:
     name: Inspect packages
+    needs: inspect-skipping
+    if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
+
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
