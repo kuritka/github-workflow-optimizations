@@ -30,7 +30,7 @@ jobs:
   go-inspect:
     name: Inspect packages
     needs: inspect-skipping
-    if: ${{ needs.pre_job.outputs.should_skip != 'true' }}
+    if: ${{ needs.inspect-skipping.outputs.should_skip != 'true' }}
 
     runs-on: ubuntu-20.04
     steps:
