@@ -21,6 +21,8 @@ jobs:
     outputs:
           should_skip: ${{ steps.skip_check.outputs.should_skip }}
     steps:
+    - name: cancelling
+      uses: andymckay/cancel-action@0.2
     - id: skip_check
       uses: fkirc/skip-duplicate-actions@v3.4.1
       with:
