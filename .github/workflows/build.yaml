@@ -15,9 +15,9 @@ on:
       - '**.drawio'
       - '.spelling'
 jobs:
-  inspect-skipping:
+  skip-check:
     runs-on: ubuntu-latest
-    name: Figuring out whether I can skip the job
+    name: Skip the job?
     outputs:
           should_skip: ${{ steps.skip_check.outputs.should_skip }}
     steps:
@@ -29,8 +29,8 @@ jobs:
 
   go-inspect:
     name: Inspect packages
-    needs: inspect-skipping
-    if: ${{ needs.inspect-skipping.outputs.should_skip != 'true' }}
+    needs: skip-check
+    if: ${{ needs.skip-check.outputs.should_skip != 'true' }}
 
     runs-on: ubuntu-20.04
     steps:
